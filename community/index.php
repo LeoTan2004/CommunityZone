@@ -1,12 +1,10 @@
 <?php
-class Test{
-    function getName(){
-        return "Leo\n";
-    }
-}
-$ss = new Test();
-$arr = array(2 => $ss);
-echo $ss->getName();
-unset($arr[2]);
-echo $ss->getName();
-?>
+
+use Service\store\container\cache\HashMapContainer;
+use Service\store\Manager;
+use Service\store\strategy\cacheStrategy\SimpleGet;
+use Service\store\strategy\cacheStrategy\SimplePut;
+
+$d = new Manager(new HashMapContainer(),new HashMapContainer(),new SimplePut(),new SimpleGet(),new SimpleGet());
+$d->put("key","value");
+echo $d->get("key");
