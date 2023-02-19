@@ -12,7 +12,9 @@ function deleteUser($user_id): array
         return array(-1, '找不到该用户');
     }
     $stmt->bind_param('i', $user_id);
-    $stmt->execute();
-    return array(0, '删除成功');
+    if ($stmt->execute()) {
+        return array(0, '删除成功');
+    }
+    return array(-255,'删除失败');
 
 }

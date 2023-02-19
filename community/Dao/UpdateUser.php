@@ -15,8 +15,10 @@ function modifyUser($user_id, $email, $nickname, $signature): array
         return array(-2, '邮箱已被占用');
     }
     $stmt->bind_param('sssi', $email, $nickname, $signature, $user_id);
-    $stmt->execute();
-    return array(0, '成功修改');
+    if ($stmt->execute()) {
+        return array(0, '成功修改');
+    }
+    return array(-255, '修改失败');
 }
 
 
@@ -31,8 +33,10 @@ function modifyPassword($user_id, $password): array
         return array(-1, '找不到该用户');
     }
     $stmt->bind_param('si', $password, $user_id);
-    $stmt->execute();
-    return array(0, '修改成功');
+    if ($stmt->execute()) {
+        return array(0, '成功修改');
+    }
+    return array(-255, '修改失败');
 
 
 }

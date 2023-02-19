@@ -16,8 +16,9 @@ function createUser($user_id, $password, $email, $nickname, $signature): array
         return array(-2, '邮箱已被占用');
     }
     $stmt->bind_param('issss', $user_id, $password, $email, $nickname, $signature);
-    $stmt->execute();
-    return array(0, '创建成功,用户名:' . $user_id . ';\t邮箱:' . $email);
-
+    if ($stmt->execute()) {
+        return array(0, '创建成功,用户名:' . $user_id . ';\t邮箱:' . $email);
+    }
+    return array(-255,'创建失败');
 }
 

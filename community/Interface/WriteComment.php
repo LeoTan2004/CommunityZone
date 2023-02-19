@@ -4,21 +4,27 @@ include_once '../Dao/CreateComment.php';
 include_once 'session/loginInfo.php';
 $user = getLoginId();
 if (getUserById($user)==null){
-    return array(-3,'请先登录');
+    echo json_encode(array('code' => -3, 'message' => '请先登录'),JSON_UNESCAPED_UNICODE);
+    return ;
 }
 if (!isset($_POST['content'])||!isset($_POST['theme'])){
-    return array(-1,'arguments error');
+    echo json_encode(array('code' => -1, 'message' => '缺少参数'),JSON_UNESCAPED_UNICODE);
+    return ;
 }
 $theme = trim($_POST['theme']);
 $content = trim($_POST['content']);
 if ($theme==''){
-    return array(-2,'请填写主题');
+    echo json_encode(array('code' => -2, 'message' => '请填写主题'),JSON_UNESCAPED_UNICODE);
+    return ;
 }
 if ($content==''){
-    return array(-2,'请填写内容');
+    echo json_encode(array('code' => -2, 'message' => '请填写内容'),JSON_UNESCAPED_UNICODE);
+    return ;
 }
 $rid = 0;
 if (isset($_POST['rid'])){
     $rid = $_POST['rid'];
 }
 createComment($user,$theme,$rid,$content);
+echo json_encode(array('code' => 0, 'message' => '添加成功'),JSON_UNESCAPED_UNICODE);
+return ;

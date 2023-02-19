@@ -17,5 +17,5 @@ function createComment($user_id, $m_theme, $m_rid, $content): array
     if ($stmt->execute()) {
         return array(0, '添加成功');
     }
-    return array(-1, '添加失败');
+    return array(-255, '添加失败');
 }

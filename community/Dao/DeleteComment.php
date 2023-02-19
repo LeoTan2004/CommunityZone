@@ -15,5 +15,5 @@ function deleteComment($mid): array
     if ($stmt->execute()) {
         return array(0, '成功删除mid为' . $mid . '的评论');
     }
-    return array(-1, '删除失败');
+    return array(-255, '删除失败');
 }
