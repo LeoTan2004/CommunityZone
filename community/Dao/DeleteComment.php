@@ -6,7 +6,7 @@ function deleteComment($mid): array
     $con = getConnection();
     static $stmt;
     if (!($stmt instanceof mysqli_stmt)) {
-        $stmt = $con->prepare("DELETE FROM user_message where M_ID=?");
+        $stmt = $con->prepare("DELETE FROM comment where M_ID=?");
     }
     if (!(filter_var($mid, FILTER_VALIDATE_INT))) {
         return array(-2, 'id指向错误');

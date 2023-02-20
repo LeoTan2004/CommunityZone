@@ -7,7 +7,7 @@ function createComment($user_id, $m_theme, $m_rid, $content): array
     $con = getConnection();
     static $stmt;
     if (!($stmt instanceof mysqli_stmt)) {
-        $stmt = $con->prepare("INSERT INTO user_message (M_TIME, M_USERID, M_theme, M_content, M_RID) VALUES (?,?,?,?,?)");
+        $stmt = $con->prepare("INSERT INTO comment (M_TIME, M_USERID, M_theme, M_content, M_RID) VALUES (?,?,?,?,?)");
     }
     if ((!(filter_var($user_id, FILTER_VALIDATE_INT)))) {
         return array(-1, '用户id错误');

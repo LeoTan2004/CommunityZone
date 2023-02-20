@@ -5,7 +5,7 @@ function modifyCommentRid($mid, $rid): array
     $con = getConnection();
     static $stmt;
     if (!($stmt instanceof mysqli_stmt)) {
-        $stmt = $con->prepare("UPDATE user_message SET M_RID=? where M_ID=?");
+        $stmt = $con->prepare("UPDATE comment SET M_RID=? where M_ID=?");
     }
     if (!filter_var($mid, FILTER_VALIDATE_INT)) {
         return array(-2, 'id指向错误');

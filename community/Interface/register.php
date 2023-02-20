@@ -2,7 +2,7 @@
 require_once '../Dao/CreateUser.php';
 
 if (!(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['email']))) {
-    echo json_encode(array('code' => -1, 'message' => 'arguments error!'), JSON_UNESCAPED_UNICODE);;
+    echo json_encode(array('code' => -3, 'message' => 'arguments error!'), JSON_UNESCAPED_UNICODE);;
     return;
 }
 $username = trim($_POST['username']);//用户名
@@ -22,7 +22,6 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 $signature = trim($_POST['signature']);//个性签名
 $nickname = trim($_POST['nickname']);//昵称
-createUser($username, $password, $email, $nickname, $signature);
-echo json_encode(array('code' => 0, 'message' => '注册成功'), JSON_UNESCAPED_UNICODE);
+echo json_encode(createUser($username, $password, $email, $nickname, $signature), JSON_UNESCAPED_UNICODE);;
 return;
 

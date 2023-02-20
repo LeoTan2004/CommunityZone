@@ -10,15 +10,15 @@ function createUser($user_id, $password, $email, $nickname, $signature): array
     }
     if ((!filter_var($user_id, FILTER_VALIDATE_INT) || getUserById($user_id) != null)) {
 //        var_dump(getUserById($user_id));
-        return array(-2, '用户已存在');
+        return array('code' => -4, 'message' => '用户已存在');
     }
     if (!filter_var($email, FILTER_VALIDATE_EMAIL) || getUserByEmail($email) != null) {
-        return array(-2, '邮箱已被占用');
+        return array('code' => -4, 'message' => '邮箱已被占用');
     }
     $stmt->bind_param('issss', $user_id, $password, $email, $nickname, $signature);
     if ($stmt->execute()) {
-        return array(0, '创建成功,用户名:' . $user_id . ';\t邮箱:' . $email);
+        return array('code' => 0, 'message' => '创建成功,用户名:' . $user_id . ';\t邮箱:' . $email);
     }
-    return array(-255,'创建失败');
+    return array('code' => -255, 'message' => '创建失败');
 }
 

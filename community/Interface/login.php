@@ -3,7 +3,7 @@ include_once '../Dao/CheckUser.php';
 include_once './session/loginInfo.php';
 session_start();
 if (!(isset($_POST['username']) && isset($_POST['password']))){
-    echo json_encode(array('code' => -1, 'message' => 'arguments error!'),JSON_UNESCAPED_UNICODE);
+    echo json_encode(array('code' => -3, 'message' => 'arguments error!'),JSON_UNESCAPED_UNICODE);
     return;
 }
 $username =  trim($_POST['username']);//用户名
