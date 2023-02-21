@@ -1,7 +1,9 @@
 <?php
 include_once '../Dao/CheckUser.php';
 include_once './session/loginInfo.php';
-session_start();
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
 if (!(isset($_POST['username']) && isset($_POST['password']))){
     echo json_encode(array('code' => -3, 'message' => 'arguments error!'),JSON_UNESCAPED_UNICODE);
     return;

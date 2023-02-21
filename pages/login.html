@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        function f(obj) {
+            num = obj.getElementsByClassName("number")[0].value;
+            password = obj.getElementsByClassName("password")[0].value;
+            var xmlhttp;
+            if (window.XMLHttpRequest) {
+                // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // IE6, IE5 浏览器执行代码
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    da = xmlhttp.responseText;
+                    daobj = JSON.parse(da);
+                }
+            }
+
+            xmlhttp.open("POST","../community/Interface/login.php",true);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xmlhttp.send("username="+num+'&'+"password="+password);
+        }
+    </script>
+    <meta charset="UTF-8">
+    <title>登录</title>
+</head>
+<body>
+<div id="myDiv">
+</div>
+<form>
+    <input type="text" class="number" placeholder="账号">
+    <input type="password" class="password" placeholder="密码">
+    <input type="button" onclick="f(this.parentNode)" value="提交">
+</form>
+</body>
+</html>

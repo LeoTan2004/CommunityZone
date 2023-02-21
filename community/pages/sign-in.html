@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<script src="js/login.js"></script>
+		<script>
+			function foo() {
+				username = document.getElementById('inputAccount').value;
+				pwd = document.getElementById('inputPassword').value;
+				// alert(username + '  ' + pwd);
+				login(username, pwd);
+			}
+		</script>
+		<title>登录到XTUZone</title>
+		<!-- Bootstrap core CSS -->
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<!-- Custom styles for this template -->
+		<link href="sign-in.css" rel="stylesheet">
+	</head>
+	<body class="text-center">
+		<main class="form-signin">
+			<form>
+				<img class="mb-4" src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg" alt=""
+					width="72" height="57">
+				<h1 class="h3 mb-3 fw-normal">欢迎XTU&middot;Zone</h1>
+				<label for="inputAccount" class="visually-hidden">Email address</label>
+				<input type="text" id="inputAccount" class="form-control" required="" autofocus="" placeholder="账号">
+				<label for="inputPassword" class="visually-hidden">Password</label>
+				<input type="password" id="inputPassword" class="form-control" placeholder="密码" required="">
+				<div class="href mb-3 toregister"><a href='sign-up.html'
+						class="shadow-sm text-center text-decoration-none text-primary" target="_parent">注册账号</a>
+				</div>
+				<button class="w-100 btn btn-lg btn-primary" type="button" onclick="foo()">登录</button>
+				<p class="mt-5 mb-3 text-muted">&copy; 2022-2023</p>
+			</form>
+		</main>
+	</body>
+</html>
