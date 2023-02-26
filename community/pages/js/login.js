@@ -8,14 +8,8 @@ function login(username, password) {
 		alert('密码长度应大于6位');
 		return;
 	}
-	var xmlhttp;
-	if (window.XMLHttpRequest) {
-		//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
-		xmlhttp = new XMLHttpRequest();
-	} else {
-		// IE6, IE5 浏览器执行代码
-		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-	}
+
+	let xmlhttp = getAjax();
 
 	xmlhttp.onreadystatechange = function() {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -44,14 +38,8 @@ function register(username, password,email) {
 		alert('密码长度应大于6位');
 		return;
 	}
-	var xmlhttp;
-	if (window.XMLHttpRequest) {
-		//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
-		xmlhttp = new XMLHttpRequest();
-	} else {
-		// IE6, IE5 浏览器执行代码
-		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-	}
+
+	let xmlhttp = getAjax();
 	xmlhttp.onreadystatechange = function() {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			var str = xmlhttp.responseText;
@@ -67,4 +55,21 @@ function register(username, password,email) {
 	xmlhttp.open("POST", "../interface/register.php", true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.send("username=" + v + '&' + "password=" + password+ '&' + "email=" + email);
+}
+
+function checkStatus(){
+
+	let xmlhttp = getAjax();
+	xmlhttp.onreadystatechange = function () {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			da = xmlhttp.responseText;
+			daobj = JSON.parse(da);
+			if (daobj['code']==0){
+				document.getElementById('userInfo').innerText =  daobj['date']['nickname'];
+			}
+		}
+	}
+	xmlhttp.open("GET", "../interface/getCurrentUserInfo.php", true);//url
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xmlhttp.send();//datebody
 }

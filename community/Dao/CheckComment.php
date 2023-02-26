@@ -1,5 +1,5 @@
 <?php
-require_once 'Connect.php';
+require_once 'Utils.php';
 
 function getCommentByContent($content, $limit, $offset): array
 {
@@ -17,7 +17,7 @@ function getCommentByContent($content, $limit, $offset): array
     $results = array();
     $stmt->execute();
     while ($stmt->fetch()) {
-        $results[] = array('mId' => $M_ID, 'mTime' => $M_TIME, 'mUserId' => $M_USERID, 'mTheme' => $M_theme, 'mContent' => $M_content, 'mRid' => $M_RID);
+        $results[] = array('mId' => $M_ID, 'mTime' => timestampToDate($M_TIME), 'mUserId' => $M_USERID, 'mTheme' => $M_theme, 'mContent' => $M_content, 'mRid' => $M_RID);
     }
     return $results;
 }
@@ -35,7 +35,7 @@ function getCommentByUserID($user_id, $limit, $offset): array
     $stmt->bind_param('iii', $user_id, $limit, $offset);
     $stmt->execute();
     while ($stmt->fetch()) {
-        $results[] = array('mId' => $M_ID, 'mTime' => $M_TIME, 'mUserId' => $M_USERID, 'mTheme' => $M_theme, 'mContent' => $M_content, 'mRid' => $M_RID);
+        $results[] = array('mId' => $M_ID, 'mTime' => timestampToDate($M_TIME), 'mUserId' => $M_USERID, 'mTheme' => $M_theme, 'mContent' => $M_content, 'mRid' => $M_RID);
     }
 
     return $results;
@@ -53,7 +53,7 @@ function getCommentByTheme($theme, $limit, $offset): array
     $results = array();
     $stmt->execute();
     while ($stmt->fetch()) {
-        $results[] = array('mId' => $M_ID, 'mTime' => $M_TIME, 'mUserId' => $M_USERID, 'mTheme' => $M_theme, 'mContent' => $M_content, 'mRid' => $M_RID);
+        $results[] = array('mId' => $M_ID, 'mTime' => timestampToDate($M_TIME), 'mUserId' => $M_USERID, 'mTheme' => $M_theme, 'mContent' => $M_content, 'mRid' => $M_RID);
     }
     return $results;
 }
@@ -70,5 +70,5 @@ function getCommentByID($id): array
     $stmt->execute();
     $stmt->fetch();
 
-    return array('mId' => $M_ID, 'mTime' => $M_TIME, 'mUserId' => $M_USERID, 'mTheme' => $M_theme, 'mContent' => $M_content, 'mRid' => $M_RID);
+    return array('mId' => $M_ID, 'mTime' => timestampToDate($M_TIME), 'mUserId' => $M_USERID, 'mTheme' => $M_theme, 'mContent' => $M_content, 'mRid' => $M_RID);
 }

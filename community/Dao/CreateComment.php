@@ -1,6 +1,6 @@
 <?php
 
-include_once 'Connect.php';
+require_once 'Utils.php';
 include_once 'CheckUser.php';
 function createComment($user_id, $m_theme, $m_rid, $content): array
 {

@@ -1,5 +1,5 @@
 <?php
-require_once 'Connect.php';
+require_once 'Utils.php';
 function getUserById($uid)
 {
     $con = getConnection();

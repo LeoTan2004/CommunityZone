@@ -25,3 +25,12 @@ function getLoginId()
     }
     return false;
 }
+
+function checkLogin(){
+    if (getLoginId()==false) {
+        echo json_encode(array('code' => -1, 'message' => '请先登录'), JSON_UNESCAPED_UNICODE);
+        return false;
+    }else{
+        return true;
+    }
+}

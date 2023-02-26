@@ -1,5 +1,5 @@
 <?php
-include_once 'Connect.php';
+require_once 'Utils.php';
 include_once 'CheckComment.php';
 function addFavor($user_id, $mid)
 {

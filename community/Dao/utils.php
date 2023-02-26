@@ -14,3 +14,9 @@ function getConnection():mysqli{
     }
     return $conn;
 }
+
+function timestampToDate($timestamp){
+    date_default_timezone_set("prc");
+    $date = date('20y-m-d',$timestamp);
+    return $date;
+}

@@ -1,5 +1,5 @@
 <?php
-require_once 'Connect.php';
+require_once 'Utils.php';
 require_once 'CheckUser.php';
 function modifyUser($user_id, $email, $nickname, $signature): array
 {

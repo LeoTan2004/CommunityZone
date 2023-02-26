@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Connect.php';
+require_once 'Utils.php';
 function deleteComment($mid): array
 {
     $con = getConnection();
